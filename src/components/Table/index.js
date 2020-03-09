@@ -11,9 +11,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
-// Helpers
-import { useFetch } from "usefetch-caching";
-
 const useStyles = makeStyles({
   container: {
     marginTop: 32
@@ -23,15 +20,10 @@ const useStyles = makeStyles({
   }
 });
 
-export default function CountryTable() {
+export default function CountryTable(props) {
   const classes = useStyles();
 
-  const data = useFetch(
-    `https://coronavirus-tracker-api.herokuapp.com/all`,
-    "items"
-  );
-
-  console.log("DATA", data);
+  const { data } = props;
 
   return data ? (
     <TableContainer component={Paper} className={classes.container}>
@@ -47,10 +39,10 @@ export default function CountryTable() {
         </TableHead>
         <TableBody>
           {data.confirmed.locations.map((row, index) => (
-            <TableRow key={row.name}>
+            <TableRow key={row.name} key={index}>
               <TableCell component="th" scope="row">
                 <Link
-                  style={{ textDecoration: "inherit" }}
+                  style={{ color: "white", textDecoration: "inherit" }}
                   to={`/country/${row.country}`}
                 >
                   {row.country}

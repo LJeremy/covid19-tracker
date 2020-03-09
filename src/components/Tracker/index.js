@@ -5,7 +5,8 @@ import Grid from "@material-ui/core/Grid";
 import Tooltip from "@material-ui/core/Tooltip";
 
 // Helpers
-import { useFetch } from "usefetch-caching";
+
+import { FormatNumber } from "../../helpers";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,35 +19,32 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Tracker() {
-  let items = useFetch(
-    `https://coronavirus-tracker-api.herokuapp.com/all`,
-    "items"
-  );
+export default function Tracker(props) {
+  const { data } = props;
 
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      {items ? (
+      {data ? (
         <Grid container spacing={3}>
           <Tooltip title="Confirmed">
             <Grid item xs>
               <Paper className={classes.paper}>
-                🤒 {JSON.stringify(items.latest["confirmed"])}
+                🤒 {FormatNumber(data.latest["confirmed"])}
               </Paper>
             </Grid>
           </Tooltip>
           <Tooltip title="Deaths">
             <Grid item xs>
               <Paper className={classes.paper}>
-                💀 {JSON.stringify(items.latest["deaths"])}
+                💀 {FormatNumber(data.latest["deaths"])}
               </Paper>
             </Grid>
           </Tooltip>
           <Tooltip title="Recovered">
             <Grid item xs>
               <Paper className={classes.paper}>
-                ✅ {JSON.stringify(items.latest["recovered"])}
+                ✅ {FormatNumber(data.latest["recovered"])}
               </Paper>
             </Grid>
           </Tooltip>
