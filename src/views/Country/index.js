@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import ReactGA from "react-ga";
+
 import { Map, TileLayer } from "react-leaflet";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
@@ -30,6 +32,7 @@ const useStyles = makeStyles(theme => ({
 export default function Country(props) {
   let { country } = useParams();
   const { data } = props;
+  ReactGA.pageview(`/country/${country}`);
 
   const [confirmed, setConfirmed] = useState();
   const [deaths, setDeaths] = useState();

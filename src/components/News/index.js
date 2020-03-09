@@ -14,7 +14,7 @@ import { useFetch } from "usefetch-caching";
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
-    marginTop: 32,
+
     backgroundColor: theme.palette.background.paper
   },
   inline: {

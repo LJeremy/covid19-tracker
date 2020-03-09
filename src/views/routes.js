@@ -1,5 +1,4 @@
 import React from "react";
-import ReactGA from "react-ga";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
@@ -33,8 +32,6 @@ export default function App() {
     `https://coronavirus-tracker-api.herokuapp.com/all`,
     "items"
   );
-
-  ReactGA.initialize("UA-37850527-11");
 
   return (
     <ThemeProvider theme={theme}>
