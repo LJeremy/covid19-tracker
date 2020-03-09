@@ -10,6 +10,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles({
   container: {
@@ -58,6 +59,6 @@ export default function CountryTable(props) {
       </Table>
     </TableContainer>
   ) : (
-    <h1>Loading...</h1>
+    <CircularProgress />
   );
 }

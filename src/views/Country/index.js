@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Tooltip from "@material-ui/core/Tooltip";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 // Helpers
 import { FormatNumber } from "../../helpers";
@@ -12,6 +13,7 @@ import { FormatNumber } from "../../helpers";
 //components
 import Layout from "../../components/Layout";
 import Chart from "../../components/Chart";
+import Share from "../../components/Share";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -84,6 +86,7 @@ export default function Country(props) {
               </Tooltip>
             </Grid>
             <Chart data={data} country={country} />
+            <Share />
             <Map
               style={{ height: "600px", marginTop: "32px" }}
               center={[confirmed.coordinates.lat, confirmed.coordinates.long]}
@@ -96,7 +99,7 @@ export default function Country(props) {
             </Map>
           </>
         ) : (
-          <h1>Loading...</h1>
+          <CircularProgress />
         )}
       </div>
     </Layout>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 // helpers
 import { mapLocationToChartSeries } from "../../helpers/chart";
@@ -70,7 +71,7 @@ class Chart extends Component {
             <HighchartsReact highcharts={Highcharts} options={options} />
           </div>
         ) : (
-          <h1>Loading...</h1>
+          <CircularProgress />
         )}
       </React.Fragment>
     );

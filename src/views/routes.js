@@ -9,8 +9,12 @@ import Home from "./Home";
 import Country from "./Country";
 import NotFound from "./NotFound";
 
+//components
+import Tags from "../components/Tags";
+
 // Helpers
 import { useFetch } from "usefetch-caching";
+import history from "../helpers/history";
 
 export default function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -34,7 +38,8 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Router basename="/covid19-tracker">
+      <Tags />
+      <Router basename="/covid19-tracker" history={history}>
         <Switch>
           <Route exact path="/">
             <Home data={data} />

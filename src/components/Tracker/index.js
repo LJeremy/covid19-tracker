@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Tooltip from "@material-ui/core/Tooltip";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 // Helpers
-
 import { FormatNumber } from "../../helpers";
 
 const useStyles = makeStyles(theme => ({
@@ -50,7 +50,7 @@ export default function Tracker(props) {
           </Tooltip>
         </Grid>
       ) : (
-        <h1>Loading...</h1>
+        <CircularProgress />
       )}
     </div>
   );
