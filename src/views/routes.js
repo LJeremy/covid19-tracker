@@ -8,7 +8,7 @@ import NotFound from "./NotFound";
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/covid19-tracker">
       <Switch>
         <Route exact path="/">
           <Home />
