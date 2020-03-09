@@ -30,8 +30,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function News() {
+export default function News(props) {
   const classes = useStyles();
+  const { country } = props;
 
   const data = useFetch(
     `https://newsapi.org/v2/everything?language=en&q=covid19&sortBy=publishedAt&pageSize=10&apiKey=a91facb09c9444c4a2797a5ac993dc57`,

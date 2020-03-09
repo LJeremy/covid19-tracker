@@ -6,6 +6,9 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 //views
 import Home from "./Home";
 import Country from "./Country";
+import Countries from "./Countries";
+import Worldwide from "./Worldwide";
+import News from "./News";
 import NotFound from "./NotFound";
 
 //components
@@ -40,6 +43,15 @@ export default function App() {
         <Switch>
           <Route exact path="/">
             <Home data={data} />
+          </Route>
+          <Route exact path="/worldwide">
+            <Worldwide data={data} />
+          </Route>
+          <Route exact path="/countries">
+            <Countries data={data} />
+          </Route>
+          <Route exact path="/news">
+            <News />
           </Route>
           <Route exact path="/country/:country">
             <Country data={data} />
