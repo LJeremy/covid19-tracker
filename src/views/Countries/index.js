@@ -31,8 +31,16 @@ export default function Countries(props) {
   return (
     <Layout>
       <h1>Country List</h1>
-      <TextField label="Search" value={searchTerm} onChange={handleChange} />
       <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <TextField
+            style={{ marginBottom: 32 }}
+            fullWidth
+            label="Search"
+            value={searchTerm}
+            onChange={handleChange}
+          />
+        </Grid>
         {searchResults &&
           searchResults.map((country, index) => (
             <Grid item xs key={index} style={{ textAlign: "center" }}>

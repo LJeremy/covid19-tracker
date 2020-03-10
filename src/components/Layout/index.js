@@ -25,7 +25,8 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex"
+    display: "flex",
+    marginTop: theme.spacing(8)
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {
@@ -52,6 +53,10 @@ const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3)
+  },
+  link: {
+    color: theme.palette.text.primary,
+    textDecoration: "inherit"
   }
 }));
 
@@ -70,7 +75,7 @@ function Layout(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <Link style={{ textDecoration: "inherit", color: "white" }} to="/">
+        <Link className={classes.link} to="/">
           <ListItem button>
             <ListItemIcon>
               <HomeIcon />
@@ -81,10 +86,7 @@ function Layout(props) {
       </List>
       <Divider />
       <List>
-        <Link
-          style={{ textDecoration: "inherit", color: "white" }}
-          to="/worldwide"
-        >
+        <Link className={classes.link} to="/worldwide">
           <ListItem button>
             <ListItemIcon>
               <PublicIcon />
@@ -95,10 +97,7 @@ function Layout(props) {
       </List>
       <Divider />
       <List>
-        <Link
-          style={{ textDecoration: "inherit", color: "white" }}
-          to="/countries"
-        >
+        <Link className={classes.link} to="/countries">
           <ListItem button>
             <ListItemIcon>
               <FormatListNumberedIcon />
@@ -109,7 +108,7 @@ function Layout(props) {
       </List>
       <Divider />
       <List>
-        <Link style={{ textDecoration: "inherit", color: "white" }} to="/news">
+        <Link className={classes.link} to="/news">
           <ListItem button>
             <ListItemIcon>
               <AnnouncementIcon />
@@ -136,7 +135,7 @@ function Layout(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Link style={{ textDecoration: "inherit", color: "white" }} to="/">
+          <Link className={classes.link} to="/">
             <Typography variant="h6" className={classes.title}>
               🦠 COVID-19
             </Typography>

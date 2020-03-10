@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
@@ -39,7 +39,9 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <Tags />
-      <Router basename="/covid19-tracker" history={history}>
+
+      <Router basename="/" history={history}>
+        <Route component={ScrollToTop} />
         <Switch>
           <Route exact path="/">
             <Home data={data} />
@@ -64,3 +66,8 @@ export default function App() {
     </ThemeProvider>
   );
 }
+
+const ScrollToTop = () => {
+  window.scrollTo(0, 0);
+  return null;
+};
