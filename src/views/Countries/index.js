@@ -21,7 +21,7 @@ export default function Countries(props) {
   useEffect(() => {
     if (data) {
       const results = data.confirmed.locations.filter(item =>
-        item.country.toLowerCase().includes(searchTerm)
+        item.country.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setSearchResults(results);
       console.log("RESULTS", results);

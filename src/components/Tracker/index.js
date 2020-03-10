@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   paper: {
+    display: "grid",
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary
@@ -30,21 +31,24 @@ export default function Tracker(props) {
           <Tooltip title="Confirmed">
             <Grid item xs>
               <Paper className={classes.paper}>
-                🤒 {FormatNumber(data.latest["confirmed"])}
+                <span role="img"> 🤒</span>{" "}
+                {FormatNumber(data.latest["confirmed"])}
               </Paper>
             </Grid>
           </Tooltip>
           <Tooltip title="Deaths">
             <Grid item xs>
               <Paper className={classes.paper}>
-                💀 {FormatNumber(data.latest["deaths"])}
+                <span role="img"> 💀</span>{" "}
+                {FormatNumber(data.latest["deaths"])}
               </Paper>
             </Grid>
           </Tooltip>
           <Tooltip title="Recovered">
             <Grid item xs>
               <Paper className={classes.paper}>
-                ✅ {FormatNumber(data.latest["recovered"])}
+                <span role="img"> ✅</span>{" "}
+                {FormatNumber(data.latest["recovered"])}
               </Paper>
             </Grid>
           </Tooltip>

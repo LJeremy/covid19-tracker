@@ -1,18 +1,13 @@
 import React from "react";
-import clsx from "clsx";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
+import Drawer from "@material-ui/core/Drawer";
+import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -21,6 +16,10 @@ import PublicIcon from "@material-ui/icons/Public";
 import HomeIcon from "@material-ui/icons/Home";
 import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
 import Container from "@material-ui/core/Container";
+import MenuIcon from "@material-ui/icons/Menu";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const drawerWidth = 240;
 
@@ -28,88 +27,112 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
   },
-  appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
+  drawer: {
+    [theme.breakpoints.up("sm")]: {
+      width: drawerWidth,
+      flexShrink: 0
+    }
   },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
+  appBar: {
+    [theme.breakpoints.up("sm")]: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth
+    }
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up("sm")]: {
+      display: "none"
+    }
   },
-  hide: {
-    display: "none"
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0
-  },
+  toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth
   },
-  drawerHeader: {
-    display: "flex",
-    alignItems: "center",
-    padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
-    justifyContent: "flex-end"
-  },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    }),
-    marginLeft: -drawerWidth
-  },
-  contentShift: {
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    }),
-    marginLeft: 0
+    padding: theme.spacing(3)
   }
 }));
 
-export default function Layout(props) {
+function Layout(props) {
+  const { container, children } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const { children } = props;
-  const [open, setOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
   };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const drawer = (
+    <div>
+      <div className={classes.toolbar} />
+      <Divider />
+      <List>
+        <Link style={{ textDecoration: "inherit", color: "white" }} to="/">
+          <ListItem button>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+        </Link>
+      </List>
+      <Divider />
+      <List>
+        <Link
+          style={{ textDecoration: "inherit", color: "white" }}
+          to="/worldwide"
+        >
+          <ListItem button>
+            <ListItemIcon>
+              <PublicIcon />
+            </ListItemIcon>
+            <ListItemText primary="Worldwide" />
+          </ListItem>
+        </Link>
+      </List>
+      <Divider />
+      <List>
+        <Link
+          style={{ textDecoration: "inherit", color: "white" }}
+          to="/countries"
+        >
+          <ListItem button>
+            <ListItemIcon>
+              <FormatListNumberedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Country List" />
+          </ListItem>
+        </Link>
+      </List>
+      <Divider />
+      <List>
+        <Link style={{ textDecoration: "inherit", color: "white" }} to="/news">
+          <ListItem button>
+            <ListItemIcon>
+              <AnnouncementIcon />
+            </ListItemIcon>
+            <ListItemText primary="News" />
+          </ListItem>
+        </Link>
+      </List>
+      <Divider />
+    </div>
+  );
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open
-        })}
-      >
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
             edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
+            onClick={handleDrawerToggle}
+            className={classes.menuButton}
           >
             <MenuIcon />
           </IconButton>
@@ -120,87 +143,49 @@ export default function Layout(props) {
           </Link>
         </Toolbar>
       </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          <Link style={{ textDecoration: "inherit", color: "white" }} to="/">
-            <ListItem button>
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItem>
-          </Link>
-        </List>
-        <Divider />
-        <List>
-          <Link
-            style={{ textDecoration: "inherit", color: "white" }}
-            to="/worldwide"
+      <nav className={classes.drawer} aria-label="mailbox folders">
+        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+        <Hidden smUp implementation="css">
+          <Drawer
+            container={container}
+            variant="temporary"
+            anchor={theme.direction === "rtl" ? "right" : "left"}
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            classes={{
+              paper: classes.drawerPaper
+            }}
+            ModalProps={{
+              keepMounted: true // Better open performance on mobile.
+            }}
           >
-            <ListItem button>
-              <ListItemIcon>
-                <PublicIcon />
-              </ListItemIcon>
-              <ListItemText primary="Worldwide" />
-            </ListItem>
-          </Link>
-        </List>
-        <Divider />
-        <List>
-          <Link
-            style={{ textDecoration: "inherit", color: "white" }}
-            to="/countries"
+            {drawer}
+          </Drawer>
+        </Hidden>
+        <Hidden xsDown implementation="css">
+          <Drawer
+            classes={{
+              paper: classes.drawerPaper
+            }}
+            variant="permanent"
+            open
           >
-            <ListItem button>
-              <ListItemIcon>
-                <FormatListNumberedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Country List" />
-            </ListItem>
-          </Link>
-        </List>
-        <Divider />
-        <List>
-          <Link
-            style={{ textDecoration: "inherit", color: "white" }}
-            to="/news"
-          >
-            <ListItem button>
-              <ListItemIcon>
-                <AnnouncementIcon />
-              </ListItemIcon>
-              <ListItemText primary="News" />
-            </ListItem>
-          </Link>
-        </List>
-        <Divider />
-      </Drawer>
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open
-        })}
-      >
-        <div className={classes.drawerHeader} />
-        <Container maxWidth="lg">{children}</Container>
-      </main>
+            {drawer}
+          </Drawer>
+        </Hidden>
+      </nav>
+      <div className={classes.toolbar} />
+      <Container maxWidth="lg">{children}</Container>
     </div>
   );
 }
+
+Layout.propTypes = {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  container: PropTypes.any
+};
+
+export default Layout;
