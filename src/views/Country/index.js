@@ -9,6 +9,12 @@ import Grid from "@material-ui/core/Grid";
 import Tooltip from "@material-ui/core/Tooltip";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
+//colors
+
+import red from "@material-ui/core/colors/red";
+import yellow from "@material-ui/core/colors/yellow";
+import green from "@material-ui/core/colors/green";
+
 // Helpers
 import { FormatNumber } from "../../helpers";
 
@@ -27,6 +33,15 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary
+  },
+  cases: {
+    color: yellow["700"]
+  },
+  death: {
+    color: red["700"]
+  },
+  recovered: {
+    color: green["700"]
   }
 }));
 
@@ -99,21 +114,30 @@ export default function Country(props) {
               <Tooltip title="Confirmed">
                 <Grid item xs>
                   <Paper className={classes.paper}>
-                    🤒 {FormatNumber(confirmed["latest"])}
+                    <h3 className={classes.cases}>
+                      <span role="img"> 🤒</span>{" "}
+                      {FormatNumber(confirmed["latest"])}
+                    </h3>
                   </Paper>
                 </Grid>
               </Tooltip>
               <Tooltip title="Deaths">
                 <Grid item xs>
                   <Paper className={classes.paper}>
-                    💀 {FormatNumber(deaths["latest"])}
+                    <h3 className={classes.deaths}>
+                      <span role="img"> 💀</span>{" "}
+                      {FormatNumber(deaths["latest"])}
+                    </h3>
                   </Paper>
                 </Grid>
               </Tooltip>
               <Tooltip title="Recovered">
                 <Grid item xs>
                   <Paper className={classes.paper}>
-                    ✅ {FormatNumber(recovered["latest"])}
+                    <h3 className={classes.recovered}>
+                      <span role="img"> ✅</span>{" "}
+                      {FormatNumber(recovered["latest"])}
+                    </h3>
                   </Paper>
                 </Grid>
               </Tooltip>

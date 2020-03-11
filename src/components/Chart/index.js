@@ -17,42 +17,77 @@ class Chart extends Component {
   componentDidMount = () => {
     console.log("CHART MOUNT", this.props.data);
 
-    const options = {
-      chart: {
-        height: 400,
-        type: "line",
-        zoomType: "x"
-      },
-      title: {
-        text: `Coronavirus confirmed cases in ${this.props.country}`
-      },
-      xAxis: {
-        type: "datetime"
-      },
-      yAxis: {
+    let options = {};
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+      let options = {
+        chart: {
+          height: 400,
+          type: "line",
+          zoomType: "x",
+          backgroundColor: "#303030"
+        },
         title: {
-          text: "Confirmed cases"
-        }
-      },
-      legend: {
-        layout: "vertical",
-        align: "left",
-        verticalAlign: "middle"
-      },
-      series: [
-        mapLocationToChartSeries(
-          this.props.data.confirmed.locations.find(
-            _ => _.country === this.props.country
+          text: `Coronavirus confirmed cases in ${this.props.country}`,
+          style: {
+            color: "#fff"
+          }
+        },
+        xAxis: {
+          type: "datetime"
+        },
+        yAxis: {
+          title: {
+            text: "Confirmed cases"
+          }
+        },
+        series: [
+          mapLocationToChartSeries(
+            this.props.data.confirmed.locations.find(
+              _ => _.country === this.props.country
+            )
           )
-        )
-        // mapLocationToChartSeries(
-        //   nextProps.data.confirmed.locations.find(_ => _.country === "Spain")
-        // )
-      ]
-    };
-
-    this.setState({ options });
-    this.setState({ loading: false });
+          // mapLocationToChartSeries(
+          //   nextProps.data.confirmed.locations.find(_ => _.country === "Spain")
+          // )
+        ]
+      };
+      this.setState({ options });
+      this.setState({ loading: false });
+    } else {
+      let options = {
+        chart: {
+          height: 400,
+          type: "line",
+          zoomType: "x"
+        },
+        title: {
+          text: `Coronavirus confirmed cases in ${this.props.country}`
+        },
+        xAxis: {
+          type: "datetime"
+        },
+        yAxis: {
+          title: {
+            text: "Confirmed cases"
+          }
+        },
+        series: [
+          mapLocationToChartSeries(
+            this.props.data.confirmed.locations.find(
+              _ => _.country === this.props.country
+            )
+          )
+          // mapLocationToChartSeries(
+          //   nextProps.data.confirmed.locations.find(_ => _.country === "Spain")
+          // )
+        ]
+      };
+      this.setState({ options });
+      this.setState({ loading: false });
+    }
   };
 
   componentWillReceiveProps(nextProps, prevProps) {
