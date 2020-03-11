@@ -18,11 +18,11 @@ export function mapLocationToChartSeries(location) {
   console.log("mapLocationToChart value", location);
   const dateValuePairs = Object.entries(location.history)
     .map(location => toDateValuePair(location))
-    .sort((a, b) => a + b);
+    .sort((a, b) => a.date - b.date);
 
   const firstDate = dateValuePairs[0].date;
 
-  console.log("CHART FIRST DATA", firstDate);
+  console.log("CHART FIRST DATA", dateValuePairs);
 
   return {
     name: location.country,
