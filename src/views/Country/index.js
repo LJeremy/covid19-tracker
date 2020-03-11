@@ -104,7 +104,7 @@ export default function Country(props) {
   return (
     <Layout>
       <div className={classes.root}>
-        <h1>{country}</h1>
+        <h1>{province ? `${country} - ${province}` : country}</h1>
         {data && confirmed && deaths && recovered ? (
           <>
             <h3>
