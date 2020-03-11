@@ -34,9 +34,9 @@ export default function News(props) {
   const { country } = props;
 
   const data = useFetch(
-    `https://newsapi.org/v2/everything?language=${
-      country ? country.toLowerCase() : "en"
-    }&q=covid19&sortBy=publishedAt&pageSize=10&apiKey=a91facb09c9444c4a2797a5ac993dc57`,
+    `https://newsapi.org/v2/top-headlines?q=corona&country=${
+      country ? country.toLowerCase() : "us"
+    }&pageSize=10&apiKey=a91facb09c9444c4a2797a5ac993dc57`,
     `news${country ? country.toLowerCase() : ""}`
   );
 
@@ -45,6 +45,7 @@ export default function News(props) {
   return (
     <List className={classes.root}>
       {data &&
+        data.articles &&
         data.articles.map((item, index) => (
           <a
             key={index}

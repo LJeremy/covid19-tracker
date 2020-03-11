@@ -49,7 +49,7 @@ export default function CountryTable(props) {
               <TableRow key={row.name} key={index}>
                 <TableCell component="th" scope="row">
                   <Link
-                    style={{ color: "white" }}
+                    className={classes.link}
                     to={`/country/${
                       row.province
                         ? `${row.country}/${row.province}`

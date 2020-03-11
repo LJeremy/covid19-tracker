@@ -8,6 +8,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Tooltip from "@material-ui/core/Tooltip";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { Helmet } from "react-helmet";
 
 //colors
 
@@ -103,6 +104,17 @@ export default function Country(props) {
 
   return (
     <Layout>
+      <Helmet>
+        <title>{`${
+          province ? `${country} - ${province}` : country
+        }} | COVID-19`}</title>
+        <meta
+          name="title"
+          content={`${
+            province ? `${country} - ${province}` : country
+          }} | COVID-19`}
+        />
+      </Helmet>
       <div className={classes.root}>
         <h1>{province ? `${country} - ${province}` : country}</h1>
         {data && confirmed && deaths && recovered ? (

@@ -50,15 +50,12 @@ const useStyles = makeStyles(theme => ({
   drawerPaper: {
     width: drawerWidth
   },
-  title: {
-    color: theme.palette.text.primary
-  },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3)
   },
   link: {
-    color: theme.palette.text.primary,
+    color: "white",
     textDecoration: "inherit"
   }
 }));
@@ -139,9 +136,7 @@ function Layout(props) {
             <MenuIcon />
           </IconButton>
           <Link className={classes.link} to="/">
-            <Typography variant="h6" className={classes.title}>
-              🦠 COVID-19
-            </Typography>
+            <Typography variant="h6">🦠 COVID-19</Typography>
           </Link>
         </Toolbar>
       </AppBar>
