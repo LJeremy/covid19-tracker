@@ -39,7 +39,6 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <Tags />
-
       <Router basename="/" history={history}>
         <Route component={ScrollToTop} />
         <Switch>
@@ -56,6 +55,9 @@ export default function App() {
             <News />
           </Route>
           <Route exact path="/country/:country">
+            <Country data={data} />
+          </Route>{" "}
+          <Route exact path="/country/:country/:province">
             <Country data={data} />
           </Route>
           <Route>

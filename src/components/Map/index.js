@@ -15,11 +15,6 @@ const calculateRadius = (cases, multiplier, min, max) => {
 
 const history = createHashHistory();
 
-const onClickCircle = country => {
-  console.log("CLICK", country);
-  history.push(`/country/${country}`);
-};
-
 const MapComponent = props => {
   const { data } = props;
 
@@ -49,7 +44,6 @@ const MapComponent = props => {
               color="red"
               fillColor="#f03"
               fillOpacity={0.5}
-              onClick={() => onClickCircle(location.country)}
             >
               <LToolTip>
                 <h4>

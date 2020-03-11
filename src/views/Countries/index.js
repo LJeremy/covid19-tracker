@@ -53,7 +53,11 @@ export default function Countries(props) {
           searchResults.map((country, index) => (
             <Grid item xs key={index} style={{ textAlign: "center" }}>
               <Link
-                to={`/country/${country.country}`}
+                to={`/country/${
+                  country.province
+                    ? `${country.country}/${country.province}`
+                    : country.country
+                }`}
                 style={{ color: "white", textDecoration: "none" }}
               >
                 <span

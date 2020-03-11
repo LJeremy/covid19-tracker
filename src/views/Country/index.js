@@ -40,7 +40,7 @@ const calculateRadius = (cases, multiplier, min, max) => {
 };
 
 export default function Country(props) {
-  let { country } = useParams();
+  let { country, province } = useParams();
   const { data } = props;
   ReactGA.pageview(`/country/${country}`);
 
@@ -50,15 +50,34 @@ export default function Country(props) {
   const [lastUpdated, setUpdated] = useState();
 
   const findArray = () => {
-    setConfirmed(data.confirmed.locations.find(_ => _.country === country));
-    setDeaths(data.deaths.locations.find(_ => _.country === country));
-    setRecovered(data.recovered.locations.find(_ => _.country === country));
+    setConfirmed(
+      data.confirmed.locations.find(location =>
+        province
+          ? province && location.province === province
+          : location.country === country
+      )
+    );
+    setDeaths(
+      data.deaths.locations.find(location =>
+        province
+          ? province && location.province === province
+          : location.country === country
+      )
+    );
+    setRecovered(
+      data.recovered.locations.find(location =>
+        province
+          ? province && location.province === province
+          : location.country === country
+      )
+    );
     setUpdated(new Date(Date.parse(data.confirmed.last_updated)).toString());
   };
 
   useEffect(() => {
     if (data !== undefined) {
       findArray();
+      console.log("Province", province);
     } else {
       console.log("NO DATA");
     }
