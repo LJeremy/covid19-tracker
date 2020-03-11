@@ -3,13 +3,21 @@ import ReactGA from "react-ga";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
 
 //components
 import Layout from "../../components/Layout";
 
+const useStyles = makeStyles(theme => ({
+  country: {
+    color: theme.palette.text.primary
+  }
+}));
+
 export default function Countries(props) {
   const { data } = props;
   ReactGA.pageview("/countries");
+  const classes = useStyles();
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState();
@@ -63,7 +71,9 @@ export default function Countries(props) {
                       String.fromCodePoint(char.charCodeAt(0) + 127397)
                     )}
                 </span>
-                <h3>{country.province ? country.province : country.country}</h3>
+                <h3 className={classes.country}>
+                  {country.province ? country.province : country.country}
+                </h3>
               </Link>
             </Grid>
           ))}

@@ -8,6 +8,7 @@ import Tracker from "../../components/Tracker";
 import CountryTable from "../../components/Table";
 import News from "../../components/News";
 import Share from "../../components/Share";
+import Map from "../../components/Map";
 import Mortality from "../../components/Mortality";
 
 export default function Home(props) {
@@ -18,6 +19,7 @@ export default function Home(props) {
       <h1>Worldwide Cases</h1>
       <Mortality data={data} />
       <Tracker data={data} />
+      <Map data={data} />
       <h1>Latest Worldwide News</h1>
       <News />
       <Share />

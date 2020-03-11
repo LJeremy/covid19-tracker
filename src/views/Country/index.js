@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactGA from "react-ga";
-
-import { Map, TileLayer } from "react-leaflet";
+import { Map, TileLayer, Circle } from "react-leaflet";
+import { Tooltip as LToolTip } from "react-leaflet";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -28,6 +28,16 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.text.secondary
   }
 }));
+
+const calculateRadius = (cases, multiplier, min, max) => {
+  // Calculate radius.
+  const radius = cases * multiplier; // Check for min and max.
+
+  if (radius < min) return min;
+  if (radius > max) return max; // Return radius.
+
+  return radius;
+};
 
 export default function Country(props) {
   let { country } = useParams();
@@ -91,14 +101,35 @@ export default function Country(props) {
             <Chart data={data} country={country} />
             <Share />
             <Map
-              style={{ height: "600px", marginTop: "32px" }}
+              style={{
+                height: "600px",
+                marginTop: "32px"
+              }}
               center={[confirmed.coordinates.lat, confirmed.coordinates.long]}
-              zoom={7}
+              zoom={6}
+              maxZoom={12}
+              minZoom={3}
+              attributionControl={false}
+              zoomControl={false}
+              maxBoundsViscosity={0.7}
+              useFlyTo
             >
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              />
+              <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png" />
+              <Circle
+                center={[confirmed.coordinates.lat, confirmed.coordinates.long]}
+                radius={calculateRadius(confirmed.latest, 25, 15000, 500000)}
+                color="red"
+                fillColor="#f03"
+                fillOpacity={0.5}
+              >
+                <LToolTip>
+                  <h4>
+                    <b>{confirmed.province || confirmed.country}</b>
+                    <br />
+                    <b>Confirmed cases: {confirmed.latest}</b>
+                  </h4>
+                </LToolTip>
+              </Circle>
             </Map>
           </>
         ) : (

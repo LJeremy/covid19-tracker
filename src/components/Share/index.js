@@ -62,15 +62,6 @@ class Share extends Component {
             </FacebookShareCount>
           </Grid>
           <Grid item xs>
-            <FacebookMessengerShareButton
-              url={shareUrl}
-              appId="521270401588372"
-            >
-              <FacebookMessengerIcon size={32} round />
-            </FacebookMessengerShareButton>
-          </Grid>
-
-          <Grid item xs>
             <TwitterShareButton url={shareUrl} title={title}>
               <TwitterIcon size={32} round />
             </TwitterShareButton>
@@ -111,16 +102,6 @@ class Share extends Component {
                 className="Demo__some-network__share-count"
               />
             </div>
-          </Grid>
-
-          <Grid item xs>
-            <LivejournalShareButton
-              url={shareUrl}
-              title={title}
-              description={shareUrl}
-            >
-              <LivejournalIcon size={32} round />
-            </LivejournalShareButton>
           </Grid>
           <Grid item xs>
             <MailruShareButton url={shareUrl} title={title}>

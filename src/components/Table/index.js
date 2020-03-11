@@ -12,14 +12,18 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   container: {
     marginTop: 32
   },
   table: {
     minWidth: 650
+  },
+  link: {
+    color: theme.palette.text.primary,
+    textDecoration: "inherit"
   }
-});
+}));
 
 export default function CountryTable(props) {
   const classes = useStyles();
@@ -42,10 +46,7 @@ export default function CountryTable(props) {
           {data.confirmed.locations.map((row, index) => (
             <TableRow key={row.name} key={index}>
               <TableCell component="th" scope="row">
-                <Link
-                  style={{ color: "white", textDecoration: "inherit" }}
-                  to={`/country/${row.country}`}
-                >
+                <Link style={{ color: "white" }} to={`/country/${row.country}`}>
                   {row.country}
                 </Link>
               </TableCell>

@@ -44,7 +44,12 @@ export default function News(props) {
     <List className={classes.root}>
       {data &&
         data.articles.map((item, index) => (
-          <a href={item.url} target="_blank" className={classes.link}>
+          <a
+            key={index}
+            href={item.url}
+            target="_blank"
+            className={classes.link}
+          >
             <ListItem key={index} alignItems="flex-start">
               <ListItemAvatar>
                 <Avatar alt="Remy Sharp" src={item.urlToImage} />

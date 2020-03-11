@@ -50,6 +50,9 @@ const useStyles = makeStyles(theme => ({
   drawerPaper: {
     width: drawerWidth
   },
+  title: {
+    color: theme.palette.text.primary
+  },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3)
