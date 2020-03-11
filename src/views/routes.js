@@ -9,6 +9,7 @@ import Country from "./Country";
 import Countries from "./Countries";
 import Worldwide from "./Worldwide";
 import News from "./News";
+import FAQ from "./FAQ";
 import NotFound from "./NotFound";
 
 //components
@@ -53,6 +54,9 @@ export default function App() {
           </Route>
           <Route exact path="/news">
             <News />
+          </Route>
+          <Route exact path="/faq">
+            <FAQ />
           </Route>
           <Route exact path="/country/:country">
             <Country data={data} />

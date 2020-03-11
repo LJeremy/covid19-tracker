@@ -14,7 +14,6 @@ import { useFetch } from "usefetch-caching";
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
-
     backgroundColor: theme.palette.background.paper
   },
   inline: {
@@ -35,11 +34,14 @@ export default function News(props) {
   const { country } = props;
 
   const data = useFetch(
-    `https://newsapi.org/v2/everything?language=en&q=covid19&sortBy=publishedAt&pageSize=10&apiKey=a91facb09c9444c4a2797a5ac993dc57`,
-    "news"
+    `https://newsapi.org/v2/everything?language=${
+      country ? country.toLowerCase() : "en"
+    }&q=covid19&sortBy=publishedAt&pageSize=10&apiKey=a91facb09c9444c4a2797a5ac993dc57`,
+    `news${country ? country.toLowerCase() : ""}`
   );
 
   console.log("NEWS", data);
+  console.log("NEWS COUNTRY CODE", country);
   return (
     <List className={classes.root}>
       {data &&
@@ -50,27 +52,29 @@ export default function News(props) {
             target="_blank"
             className={classes.link}
           >
-            <ListItem key={index} alignItems="flex-start">
-              <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src={item.urlToImage} />
-              </ListItemAvatar>
-              <ListItemText
-                primary={item.title}
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      component="span"
-                      variant="body2"
-                      className={classes.inline}
-                      color="textPrimary"
-                    >
-                      {item.source.name}, {item.author} {""}
-                    </Typography>
-                    {item.description}
-                  </React.Fragment>
-                }
-              />
-            </ListItem>
+            <article>
+              <ListItem key={index} alignItems="flex-start">
+                <ListItemAvatar>
+                  <Avatar alt="Remy Sharp" src={item.urlToImage} />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={item.title}
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        component="span"
+                        variant="body2"
+                        className={classes.inline}
+                        color="textPrimary"
+                      >
+                        {item.source.name}, {item.author} {""}
+                      </Typography>
+                      {item.description}
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+            </article>
             {index !== 9 && <Divider variant="inset" component="li" />}
           </a>
         ))}

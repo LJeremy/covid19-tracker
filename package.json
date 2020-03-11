@@ -18,6 +18,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "react-share": "^4.0.1",
+    "react-twitter-embed": "^3.0.3",
     "usefetch-caching": "0.0.4"
   },
   "scripts": {

@@ -12,7 +12,6 @@ export default function Worldwide(props) {
   return (
     <Layout>
       <h1>Worldwide Cases</h1>
-      <h3>Click on a Country to open a detailed view.</h3>
       <CountryTable data={data} />
     </Layout>
   );

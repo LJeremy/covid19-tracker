@@ -20,11 +20,11 @@ export default function Home(props) {
       <Mortality data={data} />
       <Tracker data={data} />
       <Map data={data} />
-      <h1>Latest Worldwide News</h1>
-      <News />
       <Share />
       <h1>Latest Worldwide Data</h1>
       <CountryTable data={data} />
+      <h1>Latest Worldwide News</h1>
+      <News />
     </Layout>
   );
 }

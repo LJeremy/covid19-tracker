@@ -15,6 +15,7 @@ import { FormatNumber } from "../../helpers";
 //components
 import Layout from "../../components/Layout";
 import Chart from "../../components/Chart";
+import News from "../../components/News";
 import Share from "../../components/Share";
 
 const useStyles = makeStyles(theme => ({
@@ -118,7 +119,7 @@ export default function Country(props) {
               </Tooltip>
             </Grid>
             <Chart data={data} country={country} />
-            <Share />
+
             <Map
               style={{
                 height: "600px",
@@ -150,6 +151,9 @@ export default function Country(props) {
                 </LToolTip>
               </Circle>
             </Map>
+            <Share />
+            <h1>Country Specific News:</h1>
+            <News country={confirmed.country_code} />
           </>
         ) : (
           <CircularProgress />
