@@ -104,17 +104,29 @@ export default function Country(props) {
 
   return (
     <Layout>
-      <Helmet>
-        <title>{`${
-          province ? `${country} - ${province}` : country
-        }} | COVID-19`}</title>
-        <meta
-          name="title"
-          content={`${
+      {data && confirmed && deaths && recovered && (
+        <Helmet>
+          <title>{`${
             province ? `${country} - ${province}` : country
-          }} | COVID-19`}
-        />
-      </Helmet>
+          } | COVID-19`}</title>
+          <meta
+            name="title"
+            content={`${
+              province ? `${country} - ${province}` : country
+            } | COVID-19`}
+          />
+          <meta
+            name="description"
+            content={`${
+              province ? `${country} - ${province}` : country
+            }: Confirmed ${FormatNumber(
+              confirmed["latest"]
+            )}, Deaths: ${FormatNumber(
+              deaths["latest"]
+            )}, Recovered: ${FormatNumber(recovered["latest"])}| COVID-19`}
+          />
+        </Helmet>
+      )}
       <div className={classes.root}>
         <h1>{province ? `${country} - ${province}` : country}</h1>
         {data && confirmed && deaths && recovered ? (

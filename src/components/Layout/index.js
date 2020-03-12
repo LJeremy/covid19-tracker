@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3)
   },
   link: {
-    color: "white",
+    color: theme.palette.text.primary,
     textDecoration: "inherit"
   }
 }));
