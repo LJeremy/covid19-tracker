@@ -41,6 +41,20 @@ class Chart extends Component {
             text: "Confirmed cases"
           }
         },
+        plotOptions: {
+          series: {
+            dataLabels: {
+              enabled: true,
+              formatter: function() {
+                if (this.y > 0) {
+                  return this.y;
+                } else {
+                  return null;
+                }
+              }
+            }
+          }
+        },
         series: [
           mapLocationToChartSeries(
             this.props.data.confirmed.locations.find(
@@ -78,6 +92,20 @@ class Chart extends Component {
             text: "Confirmed cases"
           }
         },
+        plotOptions: {
+          series: {
+            dataLabels: {
+              enabled: true,
+              formatter: function() {
+                if (this.y > 0) {
+                  return this.y;
+                } else {
+                  return null;
+                }
+              }
+            }
+          }
+        },
         series: [
           mapLocationToChartSeries(
             this.props.data.confirmed.locations.find(
@@ -89,6 +117,7 @@ class Chart extends Component {
               _ => _.country === this.props.countryY
             )
           )
+
           // mapLocationToChartSeries(
           //   nextProps.data.confirmed.locations.find(_ => _.country === "Spain")
           // )
