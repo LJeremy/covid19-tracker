@@ -17,6 +17,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
 import Container from "@material-ui/core/Container";
 import MenuIcon from "@material-ui/icons/Menu";
+import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -47,6 +48,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   toolbar: theme.mixins.toolbar,
+
   drawerPaper: {
     width: drawerWidth
   },
@@ -55,6 +57,10 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3)
   },
   link: {
+    color: theme.palette.text.primary,
+    textDecoration: "inherit"
+  },
+  title: {
     color: theme.palette.text.primary,
     textDecoration: "inherit"
   }
@@ -71,7 +77,7 @@ function Layout(props) {
   };
 
   const drawer = (
-    <div>
+    <div className={classes.drawer}>
       <div className={classes.toolbar} />
       <Divider />
       <List>
@@ -108,6 +114,17 @@ function Layout(props) {
       </List>
       <Divider />
       <List>
+        <Link className={classes.link} to="/compare">
+          <ListItem button>
+            <ListItemIcon>
+              <CompareArrowsIcon />
+            </ListItemIcon>
+            <ListItemText primary="Compare" />
+          </ListItem>
+        </Link>
+      </List>
+      <Divider />
+      <List>
         <Link className={classes.link} to="/news">
           <ListItem button>
             <ListItemIcon>
@@ -135,7 +152,7 @@ function Layout(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Link className={classes.link} to="/">
+          <Link className={classes.title} to="/">
             <Typography variant="h6">🦠 COVID-19</Typography>
           </Link>
         </Toolbar>

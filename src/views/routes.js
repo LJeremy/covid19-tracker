@@ -11,6 +11,8 @@ import Worldwide from "./Worldwide";
 import News from "./News";
 import FAQ from "./FAQ";
 import NotFound from "./NotFound";
+import Compare from "./Compare";
+import CompareDetail from "./Compare/detail";
 
 //components
 import Tags from "../components/Tags";
@@ -37,6 +39,10 @@ export default function App() {
     "items"
   );
 
+  if (process.env.REACT_APP_STAGE === "PROD") {
+    console.log = function no_console() {};
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Tags />
@@ -60,9 +66,15 @@ export default function App() {
           </Route>
           <Route exact path="/country/:country">
             <Country data={data} />
-          </Route>{" "}
+          </Route>
           <Route exact path="/country/:country/:province">
             <Country data={data} />
+          </Route>
+          <Route exact path="/compare">
+            <Compare data={data} />
+          </Route>
+          <Route exact path="/compare/:countryX/:countryY">
+            <CompareDetail data={data} />
           </Route>
           <Route>
             <NotFound />
