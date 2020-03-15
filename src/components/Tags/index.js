@@ -41,6 +41,12 @@ class Tags extends Component {
             content="Worldwide COVID-19 Tracker | Live updates | 24/7"
           />
           <meta property="twitter:image" content={CImage} />
+          <meta
+            name="keywords"
+            content={`
+            corona, coronavirus, coronavirus in nederland, covid19, corona in, covid19 in , covid19 in, corona, corona, coronavirus, coronavirus, coronavirus tracker, coronavirus numbers, corona numbers, corona tracker, corona map, coronavirus map
+            `}
+          ></meta>
         </Helmet>
       </React.Fragment>
     );

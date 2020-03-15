@@ -113,7 +113,7 @@ function Layout(props) {
         </Link>
       </List>
       <Divider />
-      <List>
+      {/* <List>
         <Link className={classes.link} to="/compare">
           <ListItem button>
             <ListItemIcon>
@@ -123,7 +123,7 @@ function Layout(props) {
           </ListItem>
         </Link>
       </List>
-      <Divider />
+      <Divider /> */}
       <List>
         <Link className={classes.link} to="/news">
           <ListItem button>
@@ -189,7 +189,20 @@ function Layout(props) {
         </Hidden>
       </nav>
       <div className={classes.toolbar} />
-      <Container maxWidth="lg">{children}</Container>
+      <Container maxWidth="lg">
+        {children}
+        <Divider style={{ marginTop: 32 }} />
+        <h4 style={{ marginTop: 32 }}>
+          Sources:{" "}
+          <a
+            className={classes.link}
+            href="https://github.com/CSSEGISandData/COVID-19"
+          >
+            2019 Novel Coronavirus COVID-19 (2019-nCoV) Data Repository by Johns
+            Hopkins CSSE{" "}
+          </a>
+        </h4>
+      </Container>
     </div>
   );
 }

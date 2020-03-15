@@ -19,6 +19,10 @@ export default function Home(props) {
       <h1>Worldwide Cases</h1>
       <Mortality data={data} />
       <Tracker data={data} />
+      <h4>
+        * Note: Some countries are running out of test kits and/or are not
+        reporting all cases. Numbers may be inaccurate.
+      </h4>
       <Map data={data} />
       <Share />
       <h1>Latest Worldwide Data</h1>

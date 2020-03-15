@@ -125,6 +125,12 @@ export default function Country(props) {
               deaths["latest"]
             )}, Recovered: ${FormatNumber(recovered["latest"])}| COVID-19`}
           />
+          <meta
+            name="keywords"
+            content={`
+            corona, coronavirus, coronavirus in ${country}, coronavirus in ${province}, covid19, corona in ${country}, corona in ${province}, covid19 in ${country}, covid19 in ${province}, corona ${country}, corona ${province}, coronavirus ${country}, coronavirus ${province}, coronavirus tracker, coronavirus numbers, corona numbers, corona tracker, corona map, coronavirus map
+            `}
+          ></meta>
         </Helmet>
       )}
       <div className={classes.root}>
