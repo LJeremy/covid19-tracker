@@ -61,6 +61,8 @@ export default function Country(props) {
   const { data } = props;
   ReactGA.pageview(`/country/${country}`);
 
+  console.log("PARAMS COUNTY", country, province);
+
   const [confirmed, setConfirmed] = useState();
   const [deaths, setDeaths] = useState();
   const [recovered, setRecovered] = useState();
@@ -71,24 +73,36 @@ export default function Country(props) {
       data.confirmed.locations.find(location =>
         province
           ? province && location.province === province
-          : location.country === country
+          : location.country === country &&
+            (location.province === "" || location.province === country)
       )
     );
     setDeaths(
       data.deaths.locations.find(location =>
         province
           ? province && location.province === province
-          : location.country === country
+          : location.country === country &&
+            (location.province === "" || location.province === country)
       )
     );
     setRecovered(
       data.recovered.locations.find(location =>
         province
           ? province && location.province === province
-          : location.country === country
+          : location.country === country &&
+            (location.province === "" || location.province === country)
       )
     );
     setUpdated(new Date(Date.parse(data.confirmed.last_updated)).toString());
+
+    // const found = data.recovered.locations.find(location => {
+    //   return (
+    //     location.country === country &&
+    //     (location.province === "" || location.province === country)
+    //   );
+    // });
+
+    // console.log("FIND ARRAY", found); //  56
   };
 
   useEffect(() => {
@@ -173,7 +187,6 @@ export default function Country(props) {
               </Tooltip>
             </Grid>
             <Chart data={data} country={country} />
-
             <Map
               style={{
                 height: "600px",
