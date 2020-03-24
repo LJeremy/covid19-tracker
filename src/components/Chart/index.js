@@ -59,8 +59,13 @@ class Chart extends Component {
         },
         series: [
           mapLocationToChartSeries(
-            this.props.data.confirmed.locations.find(
-              _ => _.country === this.props.country
+            this.props.data.confirmed.locations.find(location =>
+              this.props.province
+                ? this.props.province &&
+                  location.province === this.props.province
+                : location.country === this.props.country &&
+                  (location.province === "" ||
+                    location.province === this.props.country)
             )
           )
           // mapLocationToChartSeries(
@@ -104,8 +109,13 @@ class Chart extends Component {
         },
         series: [
           mapLocationToChartSeries(
-            this.props.data.confirmed.locations.find(
-              _ => _.country === this.props.country
+            this.props.data.confirmed.locations.find(location =>
+              this.props.province
+                ? this.props.province &&
+                  location.province === this.props.province
+                : location.country === this.props.country &&
+                  (location.province === "" ||
+                    location.province === this.props.country)
             )
           )
           // mapLocationToChartSeries(

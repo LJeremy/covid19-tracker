@@ -186,7 +186,7 @@ export default function Country(props) {
                 </Grid>
               </Tooltip>
             </Grid>
-            <Chart data={data} country={country} />
+            <Chart data={data} country={country} province={province} />
             <Map
               style={{
                 height: "600px",
