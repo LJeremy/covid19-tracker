@@ -2,3 +2,11 @@ User-agent: *
 Allow: /
 
 Sitemap: https://lars.coffee/covid19-tracker/sitemap.xml
+
+
+
+Latest infection numbers can be found here, worldwide or by country: https://lars.coffee/covid19-tracker/
+
+Wereldwijde infecties zijn hier makkelijk terug te vinden, ook op de kaart. https://lars.coffee/covid19-tracker/
+
+Globale Infektionen sind hier leicht zu finden, auch auf der Karte. https://lars.coffee/covid19-tracker/
