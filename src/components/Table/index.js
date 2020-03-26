@@ -62,7 +62,7 @@ export default function CountryTable(props) {
                 <TableCell>{row.province}</TableCell>
                 <TableCell>{row.latest}</TableCell>
                 <TableCell>{data.deaths.locations[index].latest}</TableCell>
-                <TableCell>{data.recovered.locations[index].latest}</TableCell>
+                <TableCell>0</TableCell>
               </TableRow>
             ))}
           </TableBody>

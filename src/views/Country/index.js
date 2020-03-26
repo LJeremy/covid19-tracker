@@ -65,7 +65,7 @@ export default function Country(props) {
 
   const [confirmed, setConfirmed] = useState();
   const [deaths, setDeaths] = useState();
-  const [recovered, setRecovered] = useState();
+  // const [recovered, setRecovered] = useState();
   const [lastUpdated, setUpdated] = useState();
 
   const findArray = () => {
@@ -85,14 +85,14 @@ export default function Country(props) {
             (location.province === "" || location.province === country)
       )
     );
-    setRecovered(
-      data.recovered.locations.find(location =>
-        province
-          ? province && location.province === province
-          : location.country === country &&
-            (location.province === "" || location.province === country)
-      )
-    );
+    // setRecovered(
+    //   data.recovered.locations.find(location =>
+    //     province
+    //       ? province && location.province === province
+    //       : location.country === country &&
+    //         (location.province === "" || location.province === country)
+    //   )
+    // );
     setUpdated(new Date(Date.parse(data.confirmed.last_updated)).toString());
 
     // const found = data.recovered.locations.find(location => {
@@ -118,7 +118,7 @@ export default function Country(props) {
 
   return (
     <Layout>
-      {data && confirmed && deaths && recovered && (
+      {data && confirmed && deaths && (
         <Helmet>
           <title>{`${
             province ? `${country} - ${province}` : country
@@ -137,7 +137,7 @@ export default function Country(props) {
               confirmed["latest"]
             )}, Deaths: ${FormatNumber(
               deaths["latest"]
-            )}, Recovered: ${FormatNumber(recovered["latest"])}| COVID-19`}
+            )}, Recovered: 0 | COVID-19`}
           />
           <meta
             name="keywords"
@@ -149,7 +149,7 @@ export default function Country(props) {
       )}
       <div className={classes.root}>
         <h1>{province ? `${country} - ${province}` : country}</h1>
-        {data && confirmed && deaths && recovered ? (
+        {data && confirmed && deaths ? (
           <>
             <h3>
               <b>Lastest update:</b> {lastUpdated}
@@ -179,13 +179,16 @@ export default function Country(props) {
                 <Grid item xs>
                   <Paper className={classes.paper}>
                     <h3 className={classes.recovered}>
-                      <span role="img"> ✅</span>{" "}
-                      {FormatNumber(recovered["latest"])}
+                      <span role="img"> ✅</span> 0
                     </h3>
                   </Paper>
                 </Grid>
               </Tooltip>
             </Grid>
+            <h4>
+              * Note: Our datasource has stopped reporting recovered cases. We
+              will update this ASAP.
+            </h4>
             <Chart data={data} country={country} province={province} />
             <Map
               style={{
